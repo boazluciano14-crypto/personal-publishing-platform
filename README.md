@@ -1,91 +1,78 @@
-# Personal Publishing Platform
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-A complete platform where you publish stories and poems, readers visit your website, and you get notified in real-time with ad revenue.
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-## Features
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
-✅ **Website** - Publish and display your stories/poems
-✅ **Real-time Notifications** - Get notified when someone views your content
-✅ **Ad System** - 2-3 ads (15 seconds each) on every view
-✅ **View Tracking** - Track all visitors and their activity
-✅ **Mobile-Friendly** - Works on all devices
-✅ **Free Hosting** - Deploy to free services
-✅ **Admin Dashboard** - Manage your content and earnings
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+{
+  "name": "personal-publishing-platform",
+  "version": "1.0.0",
+  "description": "Personal publishing platform with ads and notifications",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run dev -w frontend\" \"npm run dev -w backend\"",
+    "build": "npm run build -w frontend && npm run build -w backend",
+    "start": "npm start -w backend",
+    "install-all": "npm install && npm install -w frontend && npm install -w backend"
+  },
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "devDependencies": {
+    "concurrently": "^7.6.0"
+  },
+  "keywords": ["publishing", "stories", "poems", "ads", "notifications"],
+  "author": "boazluciano14-crypto",
+  "license": "MIT"
+}
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "^14.0.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "axios": "^1.6.0",
+    "socket.io-client": "^4.5.0",
+    "tailwindcss": "^3.3.0"
+  },
+  "devDependencies": {
+    "postcss": "^8.4.0",
+    "autoprefixer": "^10.4.0"
+  }
+}
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  images: {
+    unoptimized: true,
+  },
+}
 
-## Quick Start
-
-### Prerequisites
-- Node.js (v14+)
-- npm or yarn
-
-### Installation
-
-1. Clone the repository
-```bash
-git clone https://github.com/boazluciano14-crypto/personal-publishing-platform.git
-cd personal-publishing-platform
-```
-
-2. Install dependencies
-```bash
-npm install
-```
-
-3. Start the development server
-```bash
-npm run dev
-```
-
-4. Open your browser and go to `http://localhost:3000`
-
-## Project Structure
-
-```
-├── frontend/          # React website
-├── backend/           # Node.js API server
-├── mobile/            # React Native mobile app
-└── docs/              # Documentation
-```
-
-## Deployment
-
-### Frontend (Free)
-- **Vercel**: Deploy `frontend/` folder (most recommended)
-- **Netlify**: Free tier supports unlimited deployments
-- **GitHub Pages**: Free static hosting
-
-### Backend (Free)
-- **Render**: Free tier with auto-deploy from GitHub
-- **Railway**: Free tier available
-- **Heroku**: Free tier removed, but use Railway/Render instead
-
-### Database (Free)
-- **PostgreSQL**: Use Render or Railway's free database
-- **MongoDB Atlas**: Free tier available
-- **Firebase**: Free tier with real-time database
-
-## Configuration
-
-See `docs/SETUP.md` for detailed setup instructions.
-
-## Tech Stack
-
-- **Frontend**: React + Next.js
-- **Backend**: Node.js + Express
-- **Database**: PostgreSQL
-- **Real-time**: Socket.io
-- **Hosting**: Vercel (Frontend) + Render (Backend)
-
-## Earning Money
-
-1. Ads display automatically (2-3 ads, 15 seconds each)
-2. Money per view from ad networks
-3. Dashboard shows real-time earnings
-
-## Support
-
-For issues or questions, check the `docs/` folder.
-
-## License
-
-MIT
+module.exports = nextConfig
